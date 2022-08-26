@@ -1,0 +1,33 @@
+﻿@model FastFood.Models.SanPham
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+
+    <center>
+    <div>
+        <hr />
+        <img src=@Url.Content("../Template/assets/img/gallery/" + Model.AnhUrl) class="img-fluid rounded-3 h-100" />
+        <br />
+        <h3> @Model.TenSP</h3>
+        <h3 style="color:red">Giá: @Model.GiaSP</h3>
+        <br />
+        @Model.MoTa
+        <br />
+
+        @using (Html.BeginForm("AddCart", "Cart", new { @id = Model.MaSP, @URL = Request.Url.ToString() }))
+            {
+                <input type="submit" value="Thêm vào giỏ hàng" id="bgnGioHang" />
+
+            }
+    </div>
+</center>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSP }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

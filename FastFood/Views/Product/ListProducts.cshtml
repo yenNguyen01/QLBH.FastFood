@@ -1,0 +1,33 @@
+﻿@model IEnumerable<FastFood.Models.SanPham>
+@{
+    ViewBag.Title = "ListProducts";
+    Layout = null;
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+        <div class="row gx-3 h-100 align-items-center">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <a href=@Url.Action("Details", "Product",new { id = item.MaSP })>
+                        <img src=@Url.Content("../Template/assets/img/gallery/"+ item.AnhUrl) class="img-fluid rounded-3 h-100" alt="" width="300" height="280" />
+                    </a>
+                    <center>
+                        <h3>@item.TenSP</h3>
+                        <h3 style="color:red">Giá: @item.GiaSP</h3>
+                        <br />
+                        @using (Html.BeginForm("AddCart", "Cart", new { @id = item.MaSP, @URL = Request.Url.ToString() }))
+                        {
+                            <input type="submit" value="Thêm vào giỏ hàng" class="btn btn-lg btn-danger" />
+
+                        }@*<input type="submit" value="Đặt hàng" id="bgnGioHang" />*@
+                        @*<div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="@Url.Action("AddCart", "Cart", new {id = item.MaSP, @URL = Request.Url.ToString() })" role="button">Đặt hàng ngay</a></div>*@
+                    </center>
+                </div>
+            }
+        </div>
+
+
+
+

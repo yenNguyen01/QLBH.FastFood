@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>@ViewBag.Title - My ASP.NET Application</title>
+        @*@Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")*@
+    @Styles.Render("~/Template/assets/img")
+    <link rel="apple-touch-icon" sizes="180x180" href="../Template/assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../Template/assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../Template/assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../Template/assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="../Template/assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="../Template/assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    @Styles.Render("~/Template/assets/css")
+    <link href="../Template/assets/css/theme.css" rel="stylesheet" />
+
+    <script src="../Template/vendors/popperjs/popper.min.js"></script>
+    <script src="../Template/vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="../Template/vendors/is/is.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="../Template/vendors/fontawesome/all.min.js"></script>
+    <script src="../Template/assets/js/theme.js"></script>
+</head>
+<body>
+
+    @{
+        var nguoiDung = Session["user"] as FastFood.Models.KhachHang;
+    }
+                <div class="navbar navbar-expand-lg navbar-light bg-light fixed-top" data-navbar-on-scroll="data-navbar-on-scroll">
+                <div class="container">
+                    <a class="navbar-brand d-inline-flex" href="index.html"><img class="d-inline-block" src="../Template/assets/img/gallery/logo.svg" alt="logo" /><span class="text-1000 fs-3 fw-bold ms-2 text-gradient">Fastfood</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span></button>
+                    <div class="collapse navbar-collapse border-top border-lg-0 my-2 mt-lg-0" id="navbarSupportedContent">
+                        <div class="mx-auto pt-5 pt-lg-0 d-block d-lg-none d-xl-block">
+                            <p class="mb-0 fw-bold text-lg-center">Vị trí cửa hàng:<i class="fas fa-map-marker-alt text-warning mx-2"></i><span class="fw-normal"></span></p>
+                        </div>
+                        <form class="d-flex mt-4 mt-lg-0 ms-lg-auto ms-xl-0">
+                            <div class="input-group-icon pe-2">
+                                <i class="fas fa-search input-box-icon text-primary"></i>
+                                <input class="form-control border-0 input-box bg-100" type="search" placeholder="Tìm món" aria-label="Tìm kiếm" />
+                            </div>
+                            @{
+                                if (nguoiDung != null)
+                                {
+                                        <div class="col-sm-4 col-md-0" style="padding-left:250px">
+                                            @Html.Action("CartPartial", "Cart", new { @class = "cart" })
+                                        </div>
+                                        <div class="col-sm-4 col-md-0">
+
+                                            @*<button class="btn btn-white shadow-warning text-warning" type="submit">
+                                             <i class="fas fa-user me-2"></i> </button>*@
+                                            &nbsp; @nguoiDung.Email
+
+                                        </div>
+                                        <div class="input-group-icon pe-2">
+                                            <button class="btn btn-white shadow-warning text-warning" type="submit">
+                                                <a href=@Url.Action("Logout", "User")>Đăng xuất</a>
+                                            </button>
+                                        </div>
+                                 }
+                                    else
+                                    {
+                                        <button class="btn btn-white shadow-warning text-warning" type="submit">
+                                            <a href=@Url.Action("Login", "User")>Đăng nhập</a>
+                                        </button>
+
+                                    }
+                             }
+                                        
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            @*<div class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                        </div>
+                        <div class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                                <li>@Html.ActionLink("About", "About", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>*@
+            <div class="container body-content">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <section class="py-0 pt-7 bg-1000">
+
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">
+                                    <h5 class="lh-lg fw-bold text-white">COMPANY</h5>
+                                    <ul class="list-unstyled mb-md-4 mb-lg-0">
+                                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">About Us</a></li>
+                                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Team</a></li>
+                                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Careers</a></li>
+                                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">blog</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-6 col-md-4 col-lg-3 col-xxl-2 col-lg-3 mb-3">
+                                    <h5 class="lh-lg fw-bold text-white">CONTACT</h5>
+                                    <ul class="list-unstyled mb-md-4 mb-lg-0">
+                                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Help &amp; Support</a></li>
+                                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Partner with us </a></li>
+                                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Ride with us</a></li>
+                                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Ride with us</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">
+                                    <h5 class="lh-lg fw-bold text-white">LEGAL</h5>
+                                    <ul class="list-unstyled mb-md-4 mb-lg-0">
+                                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Terms &amp; Conditions</a></li>
+                                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Refund &amp; Cancellation</a></li>
+                                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Privacy Policy</a></li>
+                                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Cookie Policy</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-6 col-md-4 col-lg-3 col-xxl-2 mb-3">
+                                    <h5 class="lh-lg fw-bold text-white">LEGAL</h5>
+                                    <ul class="list-unstyled mb-md-4 mb-lg-0">
+                                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Terms &amp; Conditions</a></li>
+                                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Refund &amp; Cancellation</a></li>
+                                        <li class="lh-lg"><a class="text-200 text-decoration-none" href="#!">Privacy Policy</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <hr class="border border-800" />
+                            <div class="row flex-center pb-3">
+                                <div class="col-md-6 order-0">
+                                    <p class="text-200 text-center text-md-start">&copy; @DateTime.Now.Year - My Web order fastfood</p>
+                                </div>
+
+                            </div>
+                        </div><!-- end of .container
+
+                    </section>
+                </footer>
+            </div>
+
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
+            @RenderSection("scripts", required: false)
+</body>
+</html>
